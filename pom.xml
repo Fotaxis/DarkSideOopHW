@@ -15,20 +15,21 @@
 
         <telegrambots.version>6.9.7.1</telegrambots.version>
         <discord4j.version>3.2.6</discord4j.version>
-        <reactor-netty-http.version>1.1.13</reactor-netty-http.version>
+
+        <reactor-netty-http.version>1.1.23</reactor-netty-http.version>
         <netty-handler.version>4.1.114.Final</netty-handler.version>
-        <netty-codec.version>4.1.114.Final</netty-codec.version>
-        <netty-codec-http2.version>4.1.114.Final</netty-codec-http2.version>
+        <netty-codec-http1.version>4.1.114.Final</netty-codec-http1.version>
+        <netty-codec-http2.version>4.1.77.Final</netty-codec-http2.version>
+        <commons-codec.version>1.15</commons-codec.version>
+        <reactor-netty-http.version>1.1.23</reactor-netty-http.version>
     </properties>
 
     <dependencies>
-        <!-- FIXME Тут есть уязвимость в транзитивной библиотеке, надо поправить (доп. задание) -->
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
         </dependency>
 
-        <!-- FIXME В некоторых транзитивных библиотеках есть уязвимость, надо поправить (доп. задание) -->
         <dependency>
             <groupId>com.discord4j</groupId>
             <artifactId>discord4j-core</artifactId>
@@ -50,27 +51,33 @@
             </dependency>
 
             <dependency>
-                <groupId>io.projectreactor.netty</groupId>
-                <artifactId>reactor-netty-http</artifactId>
-                <version>{reactor-netty-http.version}</version>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-handler</artifactId>
-                <version>{netty-handler.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-codec</artifactId>
-                <version>{netty-codec.version}</version>
+                <version>${netty-handler.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http2</artifactId>
-                <version>{netty-codec-http2.version}</version>
+                <version>${netty-codec-http1.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec-http</artifactId>
+                <version>${netty-codec-http1.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.projectreactor.netty</groupId>
+                <artifactId>reactor-netty-http</artifactId>
+                <version>${reactor-netty-http.version}</version>
             </dependency>
 
         </dependencies>
