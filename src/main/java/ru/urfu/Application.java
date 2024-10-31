@@ -5,6 +5,9 @@ package ru.urfu;
  */
 public class Application {
 
+    /**
+     * Запуск приложения
+     */
     public static void main(String[] args) {
         String telegramBotName = System.getenv("telegram_botName");
         String telegramToken = System.getenv("telegram_token");

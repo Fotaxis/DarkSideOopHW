@@ -18,11 +18,19 @@ public class DiscordBot {
 
     private final MessageHandler messageHandler;
 
+    /**
+     * Конструктор
+     * @param token токен
+     * @param messageHandler обработчик сообщений
+     */
     public DiscordBot(String token, MessageHandler messageHandler) {
         this.token = token;
         this.messageHandler = messageHandler;
     }
 
+    /**
+     * Запустить бота
+     */
     public void start() {
         client = DiscordClient.create(token).login().block();
         if (client == null) {
