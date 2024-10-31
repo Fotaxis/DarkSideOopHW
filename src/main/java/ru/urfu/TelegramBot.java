@@ -15,11 +15,23 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final String telegramBotName;
 
-    public TelegramBot(String telegramBotName, String token) {
+    private final MessageHandler messageHandler;
+
+    /**
+     * Конструктор Telegram бота
+     * @param telegramBotName имя
+     * @param token токенц
+     * @param messageHandler обработчик сообщений
+     */
+    public TelegramBot(String telegramBotName, String token, MessageHandler messageHandler) {
         super(token);
         this.telegramBotName = telegramBotName;
+        this.messageHandler = messageHandler;
     }
 
+    /**
+     * Запуск бота
+     */
     public void start() {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
@@ -30,13 +42,18 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
+    /**
+     * Реакция на получение сообщения
+     * @param update полученное сообщение
+     */
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             Message updateMessage = update.getMessage();
             Long chatId = updateMessage.getChatId();
             String messageFromUser = updateMessage.getText();
-            // TODO обработайте сообщение от пользователя (messageFromUser)
+
+            sendMessage(String.valueOf(chatId), messageHandler.getHandledMessage(messageFromUser));
         }
     }
 
@@ -57,6 +74,10 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
+    /**
+     * Получение имени телеграм бота
+     * @return имя бота
+     */
     @Override
     public String getBotUsername() {
         return telegramBotName;
